@@ -1,0 +1,84 @@
+@import "../../styles/uiBase.scss";
+
+$hourColWidth: 6rem;
+
+.calendar {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+    border: 1px solid black;
+}
+
+.dayColumn {
+    flex-grow: 1;
+    border-right: 1px solid black;
+    transition: transform 0.5s;
+
+    &:first-child {
+        flex-grow: initial;
+        width: $hourColWidth;
+        z-index: 10;
+
+        .hourCell {
+            cursor: auto;
+            background-color: white;
+        }
+    }
+
+    &:last-child {
+        border-right: none;
+    }
+
+    &:not(&:first-child) {
+
+        @include screenMobile() {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: calc(100% - #{$hourColWidth});
+        }
+    }
+}
+
+.dayHeader,
+.hourCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dayHeader {
+    position: relative;
+    height: 2.5rem;
+    background-color: gray;
+
+    button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &:first-child {
+            left: 1rem;
+        }
+
+        &:last-child {
+            right: 1rem;
+        }
+    }
+}
+
+.dayHours {
+
+}
+
+.hourCell {
+    cursor: pointer;
+    height: 2rem;
+    border-top: 1px solid black;
+
+    &.available {
+        background-color: green;
+    }
+}
